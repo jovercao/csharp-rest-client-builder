@@ -1,0 +1,948 @@
+﻿{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "佛山中医院医技预约API接口文档"
+  },
+  "host": "124.16.7.242:8082",
+  "schemes": [ "http" ],
+  "paths": {
+    "/api/MEAShift/GetShiftPlans": {
+      "get": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.3.1.1查询排班计划(鑫)",
+        "operationId": "MEAShift_GetShiftPlans",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "deptId",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/RetV_T_MEA_SHIFTPLAN" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/AddUpdateShiftPlans": {
+      "post": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.3.1.2新增/修改排班计划(鑫)",
+        "operationId": "MEAShift_AddUpdateShiftPlans",
+        "consumes": [ "application/json", "text/json", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/V_T_MEA_SHIFTPLAN" }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/ResultModel" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/DelShiftPlans": {
+      "post": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.3.1.2删除排班计划(鑫)",
+        "operationId": "MEAShift_DelShiftPlans",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "FID",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/ResultModel" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/PlansIsOpen": {
+      "get": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.3.1.3启用/禁用排班计划(鑫)",
+        "operationId": "MEAShift_PlansIsOpen",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "query",
+            "description": "记录ID",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ISOPEN",
+            "in": "query",
+            "description": "1启用或0禁用",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/ResultModel" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/CreateShift": {
+      "post": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.3.2.1生成排班记录(鑫)",
+        "operationId": "MEAShift_CreateShift",
+        "consumes": [ "application/json", "text/json", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "description": "生成排班记录入参",
+            "required": true,
+            "schema": { "$ref": "#/definitions/CreateShiftActionModel" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/ResultModel" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/UpdateConfig": {
+      "get": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.3.3.1设置自动生成排班记录参数(鑫)",
+        "operationId": "MEAShift_UpdateConfig",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "content",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/ResultModel" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/GetShifts": {
+      "get": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.4.1.1查询排班记录(鑫)",
+        "operationId": "MEAShift_GetShifts",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "FID",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/RetV_T_MEA_SHIFT" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/AddUpdateShift": {
+      "post": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.4.2.1新增/修改排班记录(鑫)",
+        "operationId": "MEAShift_AddUpdateShift",
+        "consumes": [ "application/json", "text/json", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "models",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/V_T_MEA_SHIFT" }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/ResultModel" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/DelShift": {
+      "post": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.4.2.1删除排班记录(鑫)",
+        "operationId": "MEAShift_DelShift",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "FID",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/ResultModel" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/SHIFTIsOpen": {
+      "get": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.4.2.2启用/禁用排班记录（鑫）",
+        "operationId": "MEAShift_SHIFTIsOpen",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "query",
+            "description": "记录ID",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ISOPEN",
+            "in": "query",
+            "description": "1启用或0禁用",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/ResultModel" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/GetBALLNUM": {
+      "get": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.5.1.1：查询班别可预约号源(鑫)",
+        "operationId": "MEAShift_GetBALLNUM",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "query",
+            "description": "记录ID",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/Ret_GetBALLNUM" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/GetShiftClass": {
+      "get": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.6.1.1查询班别(鑫)",
+        "operationId": "MEAShift_GetShiftClass",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "FID",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/RetV_T_MEA_SHIFTCLASS" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/AddUpdateShiftClass": {
+      "post": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.6.1.2新增/修改班别(鑫)",
+        "operationId": "MEAShift_AddUpdateShiftClass",
+        "consumes": [ "application/json", "text/json", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "description": "班别",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/V_T_MEA_SHIFTCLASS" }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/ResultModel" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/DelShiftClass": {
+      "post": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.6.1.3删除班别(鑫)",
+        "operationId": "MEAShift_DelShiftClass",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "FID",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/ResultModel" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/GetDeviceTypes": {
+      "get": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.6.2.1查询设备类型(鑫)",
+        "operationId": "MEAShift_GetDeviceTypes",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "FID",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "deptId",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/RetV_T_MEA_DEVICETYPE" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/AddUpdateDeviceTypes": {
+      "post": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.6.2.2新增/修改设备类型(鑫)",
+        "operationId": "MEAShift_AddUpdateDeviceType",
+        "consumes": [ "application/json", "text/json", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "description": "设备类型集合",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/V_T_MEA_DEVICETYPE" }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/ResultModel" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/DelDeviceType": {
+      "post": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.6.2.3：删除设备类型(鑫)",
+        "operationId": "MEAShift_DelDeviceType",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "FID",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/ResultModel" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/GetMediums": {
+      "get": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.6.3.1查询预约渠道(鑫)",
+        "operationId": "MEAShift_GetMediums",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "FID",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "deptId",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "mediumId",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/RetV_T_MEA_MEDIUM" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/AddUpdateMediums": {
+      "post": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.6.3.2新增/修改预约渠道(鑫)",
+        "operationId": "MEAShift_AddUpdateMediums",
+        "consumes": [ "application/json", "text/json", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/V_T_MEA_MEDIUM" }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/ResultModel" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/DelMediums": {
+      "post": {
+        "tags": [ "MEAShift" ],
+        "summary": "3.6.3.3：删除预约渠道(鑫)",
+        "operationId": "MEAShift_DelMediums",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "FID",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/ResultModel" }
+          }
+        }
+      }
+    },
+    "/api/MEAShift/GetDeptList": {
+      "get": {
+        "tags": [ "MEAShift" ],
+        "summary": "查询科室列表(鑫)",
+        "operationId": "MEAShift_GetDeptList",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/DEPT_DICT" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "RetV_T_MEA_SHIFTPLAN": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/V_QUERY_SHIFTPLAN" }
+        },
+        "code": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "msg": { "type": "string" }
+      }
+    },
+    "V_QUERY_SHIFTPLAN": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "SHIFTCLASSNAME": { "type": "string" },
+        "TIMEFLAG": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "MEDIUMID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "WEEK": { "type": "boolean" },
+        "STARTTIME": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ENDTIME": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "BALLNUM": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ISOPEN": { "type": "boolean" },
+        "DEPTID": {
+          "format": "double",
+          "type": "number"
+        },
+        "DEPTNAME": { "type": "string" },
+        "DEVICETYPEID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "DEVICETYPENAME": { "type": "string" }
+      }
+    },
+    "V_T_MEA_SHIFTPLAN": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/T_MEA_SHIFTPLAN" }
+        }
+      }
+    },
+    "T_MEA_SHIFTPLAN": {
+      "type": "object",
+      "properties": {
+        "FID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FDEVICETYPE": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FMEDIUM": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FWEEK": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FSTARTTIME": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FENDTIME": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FBALLNUM": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FOPEN": { "type": "boolean" },
+        "FTIMEFLAG": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ResultModel": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "msg": { "type": "string" }
+      }
+    },
+    "CreateShiftActionModel": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "endDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "FTIMEFLAG": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "deptId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "deviceTypeId": {
+          "format": "double",
+          "type": "number"
+        },
+        "mediumId": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "RetV_T_MEA_SHIFT": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/T_MEA_SHIFT" }
+        },
+        "code": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "msg": { "type": "string" }
+      }
+    },
+    "T_MEA_SHIFT": {
+      "type": "object",
+      "properties": {
+        "FID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FBALLNUM": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FTIMEFLAG": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FDEVICETYPE": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FMEDIUM": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FUSENUM": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FSHIFTDATE": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FSTARTTIME": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FENDTIME": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FOPEN": { "type": "boolean" }
+      }
+    },
+    "V_T_MEA_SHIFT": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/T_MEA_SHIFT" }
+        }
+      }
+    },
+    "Ret_GetBALLNUM": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/M_REBALLNUM" }
+        },
+        "code": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "msg": { "type": "string" }
+      }
+    },
+    "M_REBALLNUM": {
+      "type": "object",
+      "properties": {
+        "REBALLNUM": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "RetV_T_MEA_SHIFTCLASS": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/T_MEA_SHIFTCLASS" }
+        },
+        "code": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "msg": { "type": "string" }
+      }
+    },
+    "T_MEA_SHIFTCLASS": {
+      "type": "object",
+      "properties": {
+        "FID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FTIMEFLAG": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FNAME": { "type": "string" }
+      }
+    },
+    "V_T_MEA_SHIFTCLASS": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/T_MEA_SHIFTCLASS" }
+        }
+      }
+    },
+    "RetV_T_MEA_DEVICETYPE": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/T_MEA_DEVICETYPE" }
+        },
+        "code": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "msg": { "type": "string" }
+      }
+    },
+    "T_MEA_DEVICETYPE": {
+      "type": "object",
+      "properties": {
+        "FID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FNAME": { "type": "string" },
+        "FDEPTID": {
+          "format": "double",
+          "type": "number"
+        },
+        "FPRIORITY": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FRANGE": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FTYPE": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FDEPTNAME": { "type": "string" }
+      }
+    },
+    "V_T_MEA_DEVICETYPE": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/T_MEA_DEVICETYPE" }
+        }
+      }
+    },
+    "RetV_T_MEA_MEDIUM": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/T_MEA_MEDIUM" }
+        },
+        "code": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "msg": { "type": "string" }
+      }
+    },
+    "T_MEA_MEDIUM": {
+      "type": "object",
+      "properties": {
+        "FID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FMEDIUM": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FNAME": { "type": "string" },
+        "FDEPTID": {
+          "format": "double",
+          "type": "number"
+        },
+        "FDEPTNAME": { "type": "string" },
+        "FOPEN": { "type": "boolean" }
+      }
+    },
+    "V_T_MEA_MEDIUM": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/T_MEA_MEDIUM" }
+        }
+      }
+    },
+    "DEPT_DICT": {
+      "type": "object",
+      "properties": {
+        "DEPTID": {
+          "format": "double",
+          "type": "number"
+        },
+        "DEPTNAME": { "type": "string" }
+      }
+    }
+  }
+}

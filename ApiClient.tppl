@@ -1,0 +1,49 @@
+/*
+* 本文档由swagger客户端生成工具自动生成
+* 作者： Jover
+*/
+using Newtonsoft.Json;
+using RestSharp;
+
+namespace [:= this.config.clientNamespace :]
+{
+    /// <summary>
+    /// RestSharp 文档地址 https://github.com/restsharp/RestSharp
+    /// swagger 地址：[:=config.swaggerUrl:]
+    /// </summary> 
+    public class ApiClient
+    {
+        private RestClient client;
+        public ApiClient(string url)
+        {
+            client = new RestClient(url);
+        }
+
+[:
+for(var [path, pathDefine] of Object.entries(this.doc.paths)) {
+    let methodName = path.substring(path.lastIndexOf('/') + 1);
+    var methods = Object.keys(pathDefine);
+    for (let hm of methods) {
+        const method = pathDefine[hm];
+        const httpMethod = hm[0].toUpperCase() + hm.substring(1);
+        if (methods.length > 1) {
+            methodName = httpMethod + methodName;
+        }
+        let returnType = this.resolveType(method.responses['200']);
+:]
+        /// <summary>
+        /// [:=method.summary:]
+        /// </summary>
+[:=(method.parameters || []).map(p => `        /// <param name="${p.name}">${p.description}</param>`).join('\r\n'):]
+        public [:=returnType:] [:=methodName:]([:= (method.parameters || []).map(parameter => this.resolveType(parameter) + ' ' + parameter.name).join(',') :])
+        {
+            var request = new RestRequest("[:=path:]", RestSharp.Method.[:=httpMethod.toUpperCase():]);
+            var response = client.[:=httpMethod:](request);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<[:=returnType:]>(response.Content);
+        }
+[:
+    }
+}
+:]
+    }
+}

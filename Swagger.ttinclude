@@ -1,0 +1,30 @@
+﻿<#@ assembly path="..\\..\\packages\\Newtonsoft.Json.8.0.3\\lib\\net45\\Newtonsoft.Json.dll"#>  
+<#@ assembly path="..\\..\\packages\\RestSharp.105.2.3\\net45\\RestSharp.dll"#>
+
+<#+
+
+class Swagger {
+
+    public Newtonsoft.Json.Linq.JObject Parser(string jsonOrUrl)
+    {
+        if (jsonOrUrl.TrimStart().StartWith("http"))
+        {
+            return ParserUrl(jsonOrUrl);
+        }
+
+        return ParserJson(jsonOrUrl);
+    }
+
+    private Newtonsoft.Json.Linq.JObject ParserJson(string json)
+    {
+        Newtonsoft.Json.JsonConvert.Deserialize
+    }
+
+    private Newtonsoft.Json.Linq.JObject ParserUrl(string url)
+    {
+        var uri = new Uri(url);
+        var client = new RestClient(uri.);
+    }
+}
+
+#>
