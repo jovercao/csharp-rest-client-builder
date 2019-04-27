@@ -1,8 +1,10 @@
-const config = require('./swagger.config.json');
-const { tppl } = require('./tppl');
+const defaultConfig = require('../config/default.config.json');
+const { tppl } = require('tppl');
 const http = require('axios');
 const fs = require('fs');
 const path = require('path');
+
+const config = Object.assign({}, defaultConfig);
 
 function generate(tplFile, datas, outputPath) {
     const resolveType = function(schema) {
@@ -46,8 +48,11 @@ function generate(tplFile, datas, outputPath) {
         //     return $ref.substring(1).split('/').reduce((total, current) => total[current], this.doc)
         // },
     };
-    const outputDir = path.resolve(__dirname, config.outputDir);
+    const outputDir = path.resolve(process.cwd(), config.outputDir);
 
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir);
+    }
 
     var apiClientTpl = readFile(tplFile);
     const render = tppl(apiClientTpl);
@@ -69,7 +74,17 @@ function writeFile(filePath, data) {
     fs.writeFileSync(filePath, data);
 }
 
-async function run() {
+module.exports = async function run(optionsConfig) {
+    var cwdConfigPath = path.resolve(process.cwd(), '.restapi.config');
+    let cwdConfig, userConfig;
+    if (fs.existsSync(cwdConfigPath)) {
+        cwdConfig = require(cwdConfigPath);
+    }
+    var userConfigPath = path.resolve('~', '.restapi.config');
+    if (fs.existsSync(userConfigPath)) {
+        userConfig = require(userConfigPath);
+    }
+    Object.assign(config, cwdConfig, userConfig, optionsConfig);
     try {
         let doc;
         try {
@@ -78,14 +93,18 @@ async function run() {
             console.error(ex);
             return;
         }
-        generate('./ApiClient.tppl', { doc });
+
+        generate('./tpls/ApiClient.tppl', { doc });
+        const modelsDir = path.resolve(process.cwd(), config.outputDir, config.modelsDir);
+        if (!fs.existsSync(modelsDir)) {
+            fs.mkdirSync(modelsDir);
+        }
+
         for([name, model] of Object.entries(doc.definitions)) {
-            const outputPath = path.resolve(__dirname, config.outputDir, config.modelsDir, name + '.cs');
-            generate('./Model.tppl', { doc, model, modelName: name }, outputPath);
+            const outputPath = path.resolve(modelsDir, name + '.cs');
+            generate('./tpls/Model.tppl', { doc, model, modelName: name }, outputPath);
         }
     } catch(ex) {
         console.error(ex);
     }
 }
-
-run();

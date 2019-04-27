@@ -3,6 +3,7 @@
 > 用于生成C#，RestApiClient客户端库的代码生成器
 
 该生成器使用nodejs编写，使用前请安装Nodejs。
+使用 `jojoin/tppl` 模板引擎生成代码。
 
 ## 与VisualStudio自带生成器对比
 

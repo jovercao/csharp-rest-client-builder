@@ -1,14 +1,16 @@
 {
   "name": "csharp-rest-client-builder",
-  "version": "0.1.0",
+  "version": "0.2.0-beta",
   "description": "用于生成C#，RestApiClient客户端库的代码生成器",
-  "main": "generator.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node bin/restapi-build.js"
   },
+  "bin": "restapi-build.js",
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "tppl": "^0.1.0"
   }
 }
