@@ -85,12 +85,23 @@ module.exports = async function run(optionsConfig) {
         userConfig = require(userConfigPath);
     }
     Object.assign(config, cwdConfig, userConfig, optionsConfig);
+
+    if (!config.swaggerUrl) {
+        console.error('ERROR: 未配置swaggerUrl，您也可以在配置文件中添加该项，也可以从参数进行传递');
+        return;
+    }
     try {
         let doc;
         try {
-            doc = (await http.get(config.swaggerUrl)).data;
+            let response = await http.get(config.swaggerUrl);
+            doc = response.data;
         } catch(ex) {
             console.error(ex);
+            return;
+        }
+
+        if (typeof doc !== 'object' || !doc.paths) {
+            console.error('ERROR: 请填写正确的swaggerUrl。');
             return;
         }
 

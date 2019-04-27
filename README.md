@@ -13,19 +13,25 @@
 
 ## 使用方法
 
-```shell
-# 下载生成器
-git clone https://github.com/jovercao/csharp-rest-client-builder.git
-cd csharp-rest-client-builder
+**安装：**
+```bash
 
-# 安装nodejs依赖
-npm install
+# 安装到全局npm
+npm install --global csharp-rest-client-builder
 
-# 执行生成
-node .
 ```
 
-*注意:执行生成前请修改配置，参考[配置](##配置)*
+**生成：**
+```
+# 生成 http://your-host.com/swagger/docs/v1 到目录 d:\rest-client\ 下
+restapi-build -o "d:\rest-client\" "http://your-host.com/swagger/docs/v1"
+
+```
+
+您还可以使用以下命令查看命令说明
+```bash
+restapi-build --help
+```
 
 生成后的代码依赖以下库运行：
 
@@ -34,20 +40,23 @@ node .
 
 请为使用代码的项目添加以上Nuget依赖。
 
-## 配置
-所有配置均在 `swagger.config.json` 文件中，具体配置如下：
+
+## 配置文件
+
+本工具还支持配置文件，配置路径为当前路径下的 `.restapi.json` 文件，  
+具体配置参考如下：
 
 ```json
 {
     // swagger服务器地址
-    "swaggerUrl": "http://124.16.7.242:8082/swagger/docs/v1",
-    // 客户端命名空间（完整命名空间）
-    "clientNamespace": "MeashiftRestApiClient",
-    // Models的子命名空间（仅须填写子命名空间）
+    "swaggerUrl": "http://your-host.com/swagger/docs/v1",
+    // 客户端默认命名空间（完整命名空间），ApiClient类存于此处，默认值: RestApiClient
+    "clientNamespace": "RestApiClient",
+    // Models的子命名空间（仅须填写子命名空间）,默认值：ClientModels
     "modelsNamespace": "ClientModels",
-    // 生成的文件输出路径
+    // 生成的文件输出路径，默认值：outputs
     "outputDir": "../",
-    // Models的输出路径
+    // Models的输出路径，默认值：ClientModels
     "modelsDir": "ClientModels"
 }
 ```

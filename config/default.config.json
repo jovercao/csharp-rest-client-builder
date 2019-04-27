@@ -1,7 +1,7 @@
 {
-    "swaggerUrl": "http://124.16.7.242:8082/swagger/docs/v1",
-    "clientNamespace": "MeashiftRestApiClient",
-    "modelsNamespace": "MeashiftRestApiClient.ClientModels",
+    "swaggerUrl": null,
+    "clientNamespace": "RestApiClient",
+    "modelsNamespace": "ClientModels",
     "outputDir": "./outputs",
     "modelsDir": "ClientModels"
 }

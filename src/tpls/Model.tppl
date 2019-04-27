@@ -4,7 +4,7 @@
 */
 using System;
 
-namespace [:=config.modelsNamespace:]
+namespace [:=config.clientNamespace:].[:=config.modelsNamespace:]
 {
     public class [:=modelName:]
     {
