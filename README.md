@@ -1,3 +1,5 @@
+> 声明： 该项目已经被功能更强大的 [`rest-api-client-builder`](https://github.com/jovercao/rest-api-client-builder) 替代，请移步至[https://github.com/jovercao/rest-api-client-builder](https://github.com/jovercao/rest-api-client-builder)。
+
 # C# RestApiClient代码生成器
 
 > 用于生成C#，RestApiClient客户端库的代码生成器
